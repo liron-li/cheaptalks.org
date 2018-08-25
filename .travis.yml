@@ -1,28 +1,27 @@
 language: go
- go:
- - '1.10'
- branches:
-   only:
-   - master
- install:
- - wget https://github.com/gohugoio/hugo/releases/download/v0.47.1/hugo_0.47.1_Linux-64bit.tar.gz
- - tar -xzf hugo_0.47.1_Linux-64bit.tar.gz
- - mv hugo /usr/local/bin
- script:
- - cd $TRAVIS_BUILD_DIR && hugo
- addons:
-   ssh_known_hosts:
-   - $HOST
- after_success:
-   - chmod 600 ~/.ssh/id_rsa
-   - ssh travis@$HOST -o StrictHostKeyChecking=no 'cd ~ && echo 1 > test.log'
-   - ssh travis@$HOST -o StrictHostKeyChecking=no 'cd /var/www/cheaptalks.org && git pull && hugo'
- notifications:
-   email:
-   - liron.li@outlook.com
- env:
-   global:
-     secure: qNWNmTijIuBzv3faSIj6S6wjwGvAeV3CFyavN66NW6D7938QZtyLOMvttvwB034j+1bS5udkfZo3pLddu7HFEwlxnwXta5sj9IhxIl2Gxdu+F26D1tYE1hOcpqdS5lwTgJMyOYqpzpbELAC6W06gRcMB3d+mX0SxrF5orjuEvrDlX+hqBgpC+fG6qfQ09j18NHBLTkFKHqO3T7R4vP7uw8XMmhHoeU0vKbdw8NlRvh+iZgApfD0qsIPIYEKvsTOJHoSkluY8gVlkGcSa80M1iK94zJePVLHu8kqPANNLv5Y/mgS31DO48bfnjreHiMMQ26OCTKKMgmgExiozofLDkMgVuhxV6Zjec1cEiiScWQYKfEn+ka3nKX6tpdnTrOuCH3ha2AlERXQN0b2FduAsiuqtBkReoeEa3HY0dsSFtt8BBlKONrEtq9Ntp7g5TvyILN0/OcYkqTUQoytwLLudx1NhKwOjojy3CBy0Uinb0eS1Rpln9ZeR11e3TG5PzukUqYVFSXYWAZ9t92qdfmX6syUUC27+ki9CPLo5QrNsk55vBfei18QzFxoIr0faJ9n+MzMkVHDBdNjrvEF+zVIevee8uaBKM1g5p5CZEqEUyMiXyfh7P23Z5KPbzXBHPStrmZCenx4lKRhYbe9g6y64uH4Hu6s3HUGBr4F5g97SQZk=
- before_install:
- - openssl aes-256-cbc -K $encrypted_37764402e94c_key -iv $encrypted_37764402e94c_iv
-   -in id_rsa.enc -out ~/.ssh/id_rsa -d
+go:
+- '1.10'
+branches:
+  only:
+  - master
+install:
+- wget https://github.com/gohugoio/hugo/releases/download/v0.47.1/hugo_0.47.1_Linux-64bit.tar.gz
+- tar -xzf hugo_0.47.1_Linux-64bit.tar.gz
+- mv hugo /usr/local/bin
+script:
+- cd $TRAVIS_BUILD_DIR && hugo
+addons:
+  ssh_known_hosts:
+  - $HOST
+after_success:
+  - chmod 600 ~/.ssh/id_rsa
+  - ssh travis@$HOST -o StrictHostKeyChecking=no 'cd /var/www/cheaptalks.org && git pull && hugo'
+notifications:
+  email:
+  - liron.li@outlook.com
+env:
+  global:
+    secure: qNWNmTijIuBzv3faSIj6S6wjwGvAeV3CFyavN66NW6D7938QZtyLOMvttvwB034j+1bS5udkfZo3pLddu7HFEwlxnwXta5sj9IhxIl2Gxdu+F26D1tYE1hOcpqdS5lwTgJMyOYqpzpbELAC6W06gRcMB3d+mX0SxrF5orjuEvrDlX+hqBgpC+fG6qfQ09j18NHBLTkFKHqO3T7R4vP7uw8XMmhHoeU0vKbdw8NlRvh+iZgApfD0qsIPIYEKvsTOJHoSkluY8gVlkGcSa80M1iK94zJePVLHu8kqPANNLv5Y/mgS31DO48bfnjreHiMMQ26OCTKKMgmgExiozofLDkMgVuhxV6Zjec1cEiiScWQYKfEn+ka3nKX6tpdnTrOuCH3ha2AlERXQN0b2FduAsiuqtBkReoeEa3HY0dsSFtt8BBlKONrEtq9Ntp7g5TvyILN0/OcYkqTUQoytwLLudx1NhKwOjojy3CBy0Uinb0eS1Rpln9ZeR11e3TG5PzukUqYVFSXYWAZ9t92qdfmX6syUUC27+ki9CPLo5QrNsk55vBfei18QzFxoIr0faJ9n+MzMkVHDBdNjrvEF+zVIevee8uaBKM1g5p5CZEqEUyMiXyfh7P23Z5KPbzXBHPStrmZCenx4lKRhYbe9g6y64uH4Hu6s3HUGBr4F5g97SQZk=
+before_install:
+- openssl aes-256-cbc -K $encrypted_37764402e94c_key -iv $encrypted_37764402e94c_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
