@@ -14,9 +14,10 @@ script:
 - cd $TRAVIS_BUILD_DIR && hugo
 addons:
   ssh_known_hosts:
-  - "$HOST"
+  - $HOST
 after_success:
-- ssh travis@$HOST -o StrictHostKeyChecking=no 'cd ~ && echo 1 > test.log'
+  - chmod 600 ~/.ssh/id_rsa
+  - ssh travis@$HOST -o StrictHostKeyChecking=no 'cd ~ && echo 1 > test.log'
 notifications:
   email:
   - liron.li@outlook.com
