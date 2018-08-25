@@ -98,4 +98,4 @@ travis encrypt-file ../id_rsa --add
 
 > Caveat
 
-There is a report of this function not working on a local Windows machine. Please use a Linux or OS X machine.
+There is a report of this function not working on a local Windows machine. Please use a Linux or OS X  machine. 
