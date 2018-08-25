@@ -1,16 +1,28 @@
 language: go
 go:
-  - "1.10"
+- '1.10'
 branches:
   only:
-    - master
+  - master
 install:
-  - go get github.com/magefile/mage
-  - go get -d github.com/gohugoio/hugo
-  - cd ${GOPATH:-$HOME/go}/src/github.com/gohugoio/hugo
-  - mage vendor
-  - mage install
-script: cd $TRAVIS_BUILD_DIR && hugo
+- go get github.com/magefile/mage
+- go get -d github.com/gohugoio/hugo
+- cd ${GOPATH:-$HOME/go}/src/github.com/gohugoio/hugo
+- mage vendor
+- mage install
+script:
+- cd $TRAVIS_BUILD_DIR && hugo
+before_install:
+- openssl aes-256-cbc -K $encrypted_89098ee97ed3_key -iv $encrypted_89098ee97ed3_iv
+  -in id_rsa.enc -out ../id_rsa -d
+addons:
+  ssh_known_hosts:
+  - $HOST
+after_success:
+  - ssh travis@$HOST -o StrictHostKeyChecking=no 'cd ~ && echo 1 > test.log'
 notifications:
   email:
-    - liron.li@outlook.com
+  - liron.li@outlook.com
+env:
+  global:
+    secure: SWCPC6Ux8bSxbIrieyVO9RpzAbnRorDkFoJk46WzIx3BJhQ2hBdi0Sj8Dxpt1CIqaXj+bK4tdIGHffmA50XoD/9ffUEZNlo0ZKTf4TJUsliGasnWzDpw7JS8fndEKqH5UBLIynr7wDHd2vlOBwZMqd7E6SzRDWRiS7Cmg5Bm5PeWwTSa3xdsLULBVgTOuXmBoh/Wny3K41G1o/ucuI64cBsxziqTO09DeA8/GkeDYTHMT58qPTRGYZUCGSr8PETYoqlWDpCZ3XSaa1uAnuymouaC4Z8ao0jNx+0A7j+Gnyx2KXDfgV95mpa0KKpIMD3jcZYKBoatEFaRALPRZT2B0lfBxT8baQmUOb6K3zbH1mEwXfEi2CqABowzvJ+xr+7T7eHObDoWGQapnvaN9bTwQ0xuUIUf8yLRQFWYbVWPbswUQrj4NGpkPCUh/Va8xVAM4h0rTC3mKX3SX5Q9+218n3yMWOuuU8I4XIKq2ISwr7W8sIixkjyacqyOylRnuidKOZdi8/zfz+wS7dH6B7izAJxFCAi76klZpw3ootl8YfDN50+9T92UlMTljjMJ1e9+uV09zxJv4xtLY4i25RNl5wuyLSZ7wuEczNeY4E50heR9oc0aO4+yWID7kfEFZLo2d1A6bEw9nMTBzKDuCZpM3LLl8MPpcu78Cm+Yluw5cSI=
