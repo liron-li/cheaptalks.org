@@ -1,7 +1,7 @@
 ---
 title: "使用 Travis CI 部署到自己的服务器"
 date: 2018-08-25T17:53:58+08:00
-draft: true
+draft: false
 tags: ["持续集成"]
 categories: ["服务器"]
 author: "Liron"
