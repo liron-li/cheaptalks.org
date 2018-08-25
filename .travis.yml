@@ -7,7 +7,7 @@ install:
   - cd ${GOPATH:-$HOME/go}/src/github.com/gohugoio/hugo
   - mage vendor
   - mage install
-  - hugo
+script: cd liron-li/cheaptalks.org && hugo
 notifications:
   email:
     - liron.li@outlook.com
