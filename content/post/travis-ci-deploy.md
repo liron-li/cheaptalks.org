@@ -86,4 +86,16 @@ Are you sure you want to continue connecting (yes/no)? yes
 ```
 gem install travis
 ```
-即可安装travis客户端，
+即可安装travis客户端。如果你在本地执行加密操作，你需要把秘钥文件下载到本地
+
+```
+cd /path/to/project
+travis login
+travis encrypt-file ../id_rsa --add
+```
+
+加密这里有个大坑，Windows不支持，以下引用自官方文档
+
+> Caveat
+
+There is a report of this function not working on a local Windows machine. Please use a Linux or OS X machine.
