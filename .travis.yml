@@ -17,7 +17,7 @@ addons:
   - $HOST
 after_success:
   - chmod 600 ~/.ssh/id_rsa
-  - ssh travis@$HOST -o StrictHostKeyChecking=no 'cd /var/www/cheaptalks.org && git pull && hugo'
+  - ssh travis@$HOST -o StrictHostKeyChecking=no 'cd /var/www/cheaptalks.org && git pull && git submodule update --remote && hugo'
 notifications:
   email:
   - liron.li@outlook.com
