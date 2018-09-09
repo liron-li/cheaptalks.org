@@ -1,7 +1,7 @@
 ---
 title: "Go语言从入门到放弃（一）"
 date: 2018-09-09T17:21:04+08:00
-draft: true
+draft: false
 tags: ["go语言入门"]
 categories: ["Golang"]
 author: "Liron"
